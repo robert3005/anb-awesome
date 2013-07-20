@@ -29,18 +29,6 @@ module.exports = (grunt) ->
                     ext: ".css"
                 }]
 
-        jade:
-            development:
-                options:
-                    pretty: true
-                    client: true
-                files: [{
-                    expand: true
-                    cwd: 'src/jade/'
-                    src: ["**/*.jade"]
-                    dest: "public/js/app/views/"
-                }]
-
         bgShell:
             _defaults:
                 bg: true
@@ -49,6 +37,8 @@ module.exports = (grunt) ->
             server:
                 cmd: "./node_modules/.bin/coffee server/init.coffee"
                 bg: false
+            jsx:
+                cmd: "./node_modules/.bin/jsx -x jsx src/jsx/ public/js/app/views"
 
         watch:
             styl:
@@ -57,9 +47,9 @@ module.exports = (grunt) ->
             coffee:
                 files: ["src/coffee/**/*.coffee"]
                 tasks: ["coffeelint", "coffee"]
-            jade:
-                files: ["src/jade/**/*.jade"]
-                tasks: ["jade"]
+            jsx:
+                files: ["src/jsx/**/*.jade"]
+                tasks: ["bgShell:jsx"]
             reload:
                 files: ["public/js/**", "public/css/**"]
                 options:
@@ -69,7 +59,6 @@ module.exports = (grunt) ->
         grunt.loadNpmTasks "grunt-coffeelint"
         grunt.loadNpmTasks "grunt-bg-shell"
         grunt.loadNpmTasks "grunt-contrib-coffee"
-        grunt.loadNpmTasks "grunt-contrib-jade"
         grunt.loadNpmTasks "grunt-contrib-stylus"
         grunt.loadNpmTasks "grunt-contrib-watch"
 
