@@ -1,3 +1,5 @@
 node_modules
 public/js/app*
-public/css/!{lib}
+public/css/styles.css
+build/
+public/js/.module-cache

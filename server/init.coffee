@@ -15,11 +15,12 @@ app.use app.router
 app.use express.static(path.join __dirname, "../public")
 
 app.get "/", (req, res) ->
-    res.send("Hello World")
+    res.render "index"
 
 # development only
 if "development" is app.get "env"
     app.use express.errorHandler()
+    app.locals.pretty = true
 
 http.createServer(app).listen app.get("port"), ->
     console.log "Express server listening on port " + app.get "port"

@@ -9,12 +9,24 @@ module.exports = (grunt) ->
             client:
                 options:
                     sourceMap: true
+                    bare: true
                 files: [{
                     expand: true
                     cwd: "src/coffee/"
                     src: ["**/*.coffee"]
-                    dest: "public/js/"
+                    dest: "public/js"
                     ext: ".js"
+                }]
+            jsx:
+                options:
+                    sourceMap: false
+                    bare: true
+                files: [{
+                    expand: true
+                    cwd: "src/jsx"
+                    src: ["**/*.coffee"]
+                    dest: "build"
+                    ext: ".jsx"
                 }]
 
         stylus:
@@ -31,25 +43,28 @@ module.exports = (grunt) ->
 
         bgShell:
             _defaults:
-                bg: true
+                bg: false
             watch:
                 cmd: "grunt watch"
+                bg: true
             server:
                 cmd: "./node_modules/.bin/coffee server/init.coffee"
-                bg: false
             jsx:
-                cmd: "./node_modules/.bin/jsx -x jsx src/jsx/ public/js/app/views"
+                cmd: "./node_modules/.bin/jsx -x jsx build/ public/js"
 
         watch:
+            server:
+                files: ["server/**/*.coffee"]
+                tasks: ["coffeelint:server"]
             styl:
                 files: ["src/stylus/**/*.styl"]
                 tasks: ["stylus"]
             coffee:
-                files: ["src/coffee/**/*.coffee"]
-                tasks: ["coffeelint", "coffee"]
+                files: ["src/coffee/**/*.coffee",]
+                tasks: ["coffeelint:app", "coffee"]
             jsx:
-                files: ["src/jsx/**/*.jade"]
-                tasks: ["bgShell:jsx"]
+                files: ["build/jsx/**/*.jsx"]
+                tasks: ["coffeelint:app", "bgShell:jsx"]
             reload:
                 files: ["public/js/**", "public/css/**"]
                 options:
@@ -62,5 +77,5 @@ module.exports = (grunt) ->
         grunt.loadNpmTasks "grunt-contrib-stylus"
         grunt.loadNpmTasks "grunt-contrib-watch"
 
-        grunt.registerTask "build", ["coffeelint", "coffee", "stylus", "jade"]
-        grunt.registerTask "default", ["bgShell"]
+        grunt.registerTask "build", ["coffeelint", "coffee", "stylus", "bgShell:jsx"]
+        grunt.registerTask "default", ["bgShell:watch", "bgShell:server"]

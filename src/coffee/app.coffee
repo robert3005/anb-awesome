@@ -1,5 +1,5 @@
 requirejs.config
-    baseUrl: "/public/js/lib"
+    baseUrl: "/js/lib"
     paths:
         app: "../app",
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min"
@@ -7,7 +7,8 @@ requirejs.config
     shim:
         lodash:
             exports: "_"
-        react: ["es5-shim"]
+        react:
+            exports: "React"
         backbone:
             deps: ["jquery", "lodash"]
             exports: "Backbone"
