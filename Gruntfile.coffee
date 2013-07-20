@@ -61,12 +61,19 @@ module.exports = (grunt) ->
                 tasks: ["stylus"]
             coffee:
                 files: ["src/coffee/**/*.coffee",]
-                tasks: ["coffeelint:app", "coffee"]
+                tasks: ["coffeelint:app", "coffee:client"]
+            coffee_jsx:
+                files: ["src/jsx/**/*.coffee"]
+                tasks: ["coffeelint:app", "coffee:jsx"]
             jsx:
-                files: ["build/jsx/**/*.jsx"]
+                files: ["build/**/*.jsx"]
                 tasks: ["coffeelint:app", "bgShell:jsx"]
             reload:
                 files: ["public/js/**", "public/css/**"]
+                options:
+                    livereload: true
+            jade:
+                files: ["server/views/**"]
                 options:
                     livereload: true
 
