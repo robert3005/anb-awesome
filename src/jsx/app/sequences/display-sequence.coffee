@@ -20,11 +20,12 @@ define [
         componentWillUnmount: ->
             window.removeEventListener "keydown", this.userClick
 
-        start: (type) ->
+        start: (type, nback) ->
             factory = SequenceFactory[type]()
             this.setState
                 factory: factory
                 type: type
+                nback: nback
 
             @progress factory
 
@@ -68,7 +69,7 @@ define [
                 @displayResult((not this.state.factory.matchBackN(this.state.nback)) is yes)
                 @progress this.state.factory
 
-        stop: ->
+        reset: ->
             this.setState
                 current: null
 

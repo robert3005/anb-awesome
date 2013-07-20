@@ -12,6 +12,7 @@ requirejs.config
         backbone:
             deps: ["jquery", "lodash"]
             exports: "Backbone"
+        "bootstrap-slider": ["jquery"]
 
 
 requirejs ["app/main"]
