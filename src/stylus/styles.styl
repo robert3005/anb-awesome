@@ -28,7 +28,7 @@ transition()
     transition arguments
 
 body
-    background url("../img/arena_export.jpg") no-repeat center center fixed
+    background url("../img/16_iii_export.jpg") no-repeat center center fixed
     -webkit-background-size cover
     -moz-background-size cover
     -o-background-size cover
@@ -62,7 +62,18 @@ h2
     margin-bottom 20px
 
 .instructions
-    font-size 28px
+    background-color rgba(0,0,0,0.4)
+    border-radius 6px
+    color #fff
+    height 100%
 
 .sequence
     transition background-color 0.2s ease
+    background-color rgba(0,0,0,0.4)
+    border-radius 6px
+
+    .col-lg-12
+        overflow hidden
+
+    &.empty
+        background-color rgba(0,0,0,0)

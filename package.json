@@ -1,0 +1,44 @@
+{
+  "name": "anb-awesome",
+  "version": "0.1.0",
+  "description": "n back training game",
+  "main": " ",
+  "dependencies": {
+    "express": "~3.3.4",
+    "grunt": "~0.4.1",
+    "grunt-bg-shell": "~2.1.0",
+    "grunt-coffeelint": "~0.0.7",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-stylus": "~0.6.0",
+    "grunt-contrib-watch": "~0.5.0",
+    "jade": "~0.33.0",
+    "grunt-contrib-jade": "~0.7.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "react-tools": "~0.4.0",
+    "everyauth": "~0.4.5",
+    "socket.io": "~0.9.16"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "sudo npm install -g grunt-cli && grunt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/robert3005/anb-awesome.git"
+  },
+  "keywords": [
+    "dnb",
+    "dual",
+    "n-back",
+    "working",
+    "memory"
+  ],
+  "author": "Robert Kruszewski",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/robert3005/anb-awesome/issues"
+  }
+}

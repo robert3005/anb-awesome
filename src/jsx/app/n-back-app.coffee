@@ -23,7 +23,7 @@ define [
             return `<div class="main">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="instructions">
+                        <div class="instructions lead">
                             <p>Use &larr; to indicate a match</p>
                             <p>and &rarr; for lack of it</p>
                         </div>

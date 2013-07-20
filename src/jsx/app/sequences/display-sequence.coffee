@@ -29,7 +29,23 @@ define [
             @progress factory
 
         progress: (factory) ->
-            this.setState current: factory.next()
+            $current = $ this.refs.current.getDOMNode()
+            $current.animate {
+                marginLeft: -9999
+            }, {
+                duration: 500
+                complete: =>
+                    $current.css
+                        "margin-left": 0
+                        "margin-right": -9999
+                    this.setState current: factory.next()
+            }
+
+            $current.animate {
+                marginRight: 0
+            }, {
+                duration: 200
+            }
 
         displayResult: (correct) ->
             if correct
@@ -40,7 +56,7 @@ define [
             $node = $ this.getDOMNode()
             $node.css "background-color": colour
             $node.on "transitionend", ->
-                $node.css "background-color": "rgba(0,0,0,0)"
+                $node.css "background-color": "rgba(0,0,0,0.4)"
                 $node.off "transitionend"
 
         userClick: (ev) ->
@@ -60,12 +76,17 @@ define [
             classes = "current-element": yes
             classes[this.state.type] = yes
 
+            seqClasses =
+                sequence: yes
+                empty: not this.state.current?
+
+
             classFromObj = (obj) ->
                 _(obj).map((isSet, cssClass) ->
                     if isSet then cssClass else null
                 ).filter().value().join " "
 
-            return `<div class="sequence">
+            return `<div class={classFromObj(seqClasses)}>
                 <div class="row">
                     <div class="col-lg-12">
                         <div ref="current" class={classFromObj(classes)}>{this.state.current}</div>
