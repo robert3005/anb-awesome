@@ -10,49 +10,65 @@ define [
             return {
                 current: null
                 factory: null
-                timeoutId: null
+                type: null
+                nback: 1
             }
+
+        componentDidMount: ->
+            window.addEventListener "keydown", this.userClick
+
+        componentWillUnmount: ->
+            window.removeEventListener "keydown", this.userClick
 
         start: (type) ->
             factory = SequenceFactory[type]()
-            this.setState factory: factory
-            @progress()
-            @animateProgressBar()
+            this.setState
+                factory: factory
+                type: type
 
-        animateProgressBar: ->
-            $progress = $ this.refs.progress.getDOMNode()
-            $progress.animate {
-                width: "100%"
-            }, {
-                duration: 2000
-                complete: ->
-                    $progress.css width: "0"
-            }
+            @progress factory
 
-        progress: ->
-            timeoutID = setTimeout =>
-                this.setState current: this.state.factory.next()
-                @animateProgressBar()
-                @progress()
-            , 2000
+        progress: (factory) ->
+            this.setState current: factory.next()
 
-            this.setState timeoutId: timeoutID
+        displayResult: (correct) ->
+            if correct
+                colour = "rgba(137,185,8, 0.6)"
+            else
+                colour = "rgba(195,2,2,0.6)"
+
+            $node = $ this.getDOMNode()
+            $node.css "background-color": colour
+            $node.on "transitionend", ->
+                $node.css "background-color": "rgba(0,0,0,0)"
+                $node.off "transitionend"
+
+        userClick: (ev) ->
+            if ev.keyCode is 37
+                @displayResult(this.state.factory.matchBackN(this.state.nback) is yes)
+                @progress this.state.factory
+
+            else if ev.keyCode is 39
+                @displayResult((not this.state.factory.matchBackN(this.state.nback)) is yes)
+                @progress this.state.factory
 
         stop: ->
-            clearTimeout this.state.timeoutId
-            $(this.refs.progress.getDOMNode()).stop(yes, yes)
             this.setState
                 current: null
-                timeoutId: null
 
         render: ->
+            classes = "current-element": yes
+            classes[this.state.type] = yes
+
+            classFromObj = (obj) ->
+                _(obj).map((isSet, cssClass) ->
+                    if isSet then cssClass else null
+                ).filter().value().join " "
+
             return `<div class="sequence">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="current-element">{this.state.current}</div>
+                        <div ref="current" class={classFromObj(classes)}>{this.state.current}</div>
                     </div>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar transparent" ref="progress" style={{width: "0"}}></div>
                 </div>
             </div>`

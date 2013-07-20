@@ -41,21 +41,28 @@ h1
 h2
 .current-element
     color #fff
+    word-wrap break-word
 
 .current-element
-    min-height 600px
-    font-size 300px
-    padding-top 100px
 
-.progress
-    background-color: rgba(0,0,0,0.6)
+    font-size 280px
+    height 400px
+    line-height 400px
 
-.progress-bar
-    transition none
-
-    &.transparent
-        background-color rgba(0,0,0,0.8)
-
+    &.words
+        font-size 200px
 
 .btn-transparent
     btn-pseudo-states(#fff, rgba(0,0,0,0.6), rgba(0,0,0,0))
+
+.row + .row
+    margin-top 10px
+
+.row:last-child
+    margin-bottom 20px
+
+.instructions
+    font-size 28px
+
+.sequence
+    transition background-color 0.2s ease

@@ -1,4 +1,6 @@
-define ->
+define [
+    "lodash"
+], (_) ->
     class LetterSource
         constructor: ->
             initial = [
@@ -13,8 +15,7 @@ define ->
                 "Y", "Z"
             ]
 
-            @content = initial.filter ->
-                Math.random() > 0.5
+            @content = _(initial).shuffle().first(5).value()
 
         toArray: ->
             @content

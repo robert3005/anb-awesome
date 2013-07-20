@@ -1,22 +1,22 @@
 define ->
     class Sequence
         constructor: (@source) ->
-            @history = []
+            @generated = []
             @totalLength = @source.length
 
         history: (n) ->
-            @history[@history.length - n]
+            @generated[@generated.length - n - 1]
 
-        matchBackN: (elem, n) ->
-            (@history n) is elem
+        matchBackN: (n) ->
+            (@history n) is @current()
 
         choose: ->
             elem = @source[Math.floor Math.random() * @totalLength]
 
         current: ->
-            @history[@history.length - 1]
+            @generated[@generated.length - 1]
 
         next: ->
             elem = @choose()
-            @history.push elem
+            @generated.push elem
             elem
