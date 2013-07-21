@@ -7,5 +7,3 @@ define ->
 
         toArray: ->
             @content
-
-    NumberSource

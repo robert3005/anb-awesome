@@ -3,17 +3,26 @@ define [
     "app/sequences/letters"
     "app/sequences/numbers"
     "app/sequences/words"
-], (Sequence, LetterSource, NumberSource, WordsSource) ->
+    "app/sequences/images"
+    "app/sequences/sounds"
+], (Sequence, LetterSource, NumberSource, WordsSource,
+        ImageSource, SoundSource) ->
     class SequenceFactory
         constructor: ->
 
         numbers: ->
-            new Sequence((new NumberSource).toArray())
+            new Sequence(new NumberSource)
 
         letters: ->
-            new Sequence((new LetterSource).toArray())
+            new Sequence(new LetterSource)
 
         words: ->
-            new Sequence((new WordsSource).toArray())
+            new Sequence(new WordsSource)
+
+        images: ->
+            new Sequence(new ImageSource)
+
+        sounds: ->
+            new Sequence(new SoundSource)
 
     new SequenceFactory()

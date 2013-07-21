@@ -15,5 +15,7 @@ requirejs.config
         "bootstrap-slider": ["jquery"]
         "jquery.cookie": ["jquery"]
         "jquery.joyride": ["jquery", "jquery.cookie"]
+        howler:
+            exports: "Howl"
 
 requirejs ["app/main"]

@@ -2,7 +2,8 @@ define ->
     class Sequence
         constructor: (@source) ->
             @generated = []
-            @totalLength = @source.length
+            @sourceAsList = @source.toArray()
+            @totalLength = @sourceAsList.length
 
         history: (n) ->
             @generated[@generated.length - n - 1]
@@ -11,7 +12,7 @@ define ->
             (@history n) is @current()
 
         choose: ->
-            elem = @source[Math.floor Math.random() * @totalLength]
+            elem = @sourceAsList[Math.floor Math.random() * @totalLength]
 
         current: ->
             @generated[@generated.length - 1]

@@ -49,6 +49,7 @@ module.exports = (grunt) ->
                 bg: true
             server:
                 cmd: "./node_modules/.bin/coffee server/init.coffee"
+                maxBuffer: Infinity
             jsx:
                 cmd: "./node_modules/.bin/jsx -x jsx build/ public/js"
 

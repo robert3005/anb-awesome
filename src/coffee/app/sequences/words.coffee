@@ -19,5 +19,3 @@ define [
 
         toArray: ->
             @content
-
-    WordSource

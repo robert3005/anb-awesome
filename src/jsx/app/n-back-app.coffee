@@ -72,7 +72,14 @@ define [
                                         Words
                                 </button>
                             </div>
-                            <div class="col-lg-6"></div>
+                            <div class="col-lg-6">
+                                <button type="button"
+                                    ref="images"
+                                    onClick={this.start.bind(this, "images")}
+                                    class="btn btn-transparent btn-large btn-block">
+                                        Images
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

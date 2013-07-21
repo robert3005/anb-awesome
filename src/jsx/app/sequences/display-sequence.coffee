@@ -4,7 +4,9 @@ define [
     "jquery",
     "lodash",
     "app/sequences/sequenceOf"
-], (React, $, _, SequenceFactory) ->
+    "app/sequences/display-text"
+    "app/sequences/display-image"
+], (React, $, _, SequenceFactory, DisplayText, DisplayImage) ->
     SequenceDisplay = React.createClass
         getInitialState: ->
             return {
@@ -89,10 +91,20 @@ define [
                     if isSet then cssClass else null
                 ).filter().value().join " "
 
+            if this.state.type is "images"
+                element = `<DisplayImage element={this.state.current} />`
+            else if this.state.type is "sounds"
+                element = `<PlaySound element={this.state.current} />`
+            else
+                element = `<DisplayText element={this.state.current} />`
+
+
             return `<div class={classFromObj(seqClasses)}>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div ref="current" class={classFromObj(classes)}>{this.state.current}</div>
+                        <div ref="current" class={classFromObj(classes)}>
+                            {element}
+                        </div>
                     </div>
                 </div>
             </div>`
