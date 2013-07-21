@@ -8,6 +8,9 @@ define ->
         history: (n) ->
             @generated[@generated.length - n - 1]
 
+        size: ->
+            @generated.length
+
         matchBackN: (n) ->
             (@history n) is @current()
 

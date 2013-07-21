@@ -18,5 +18,7 @@ requirejs.config
         button: ["jquery"]
         grid:
             exports: "Grid"
+        moment:
+            exports: "moment"
 
 requirejs ["app/main"]

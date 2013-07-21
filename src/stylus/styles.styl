@@ -113,13 +113,32 @@ p:first-child
 #intro
     display none
 
+.stats
+    transition: background-color 0.3s ease-in-out;
+    background-color rgba(0,0,0,0.4)
+    border-radius 6px
+    margin-top 10px
+    font-size 18px
+    padding 6px 0
+    color #fff
+
+    span:not(.statistic)
+        margin-right 10px
+
+    span.statistic
+        margin-right 0
+        font-size 22px
+
+        span
+            margin-right 0
+
 .sequence
     transition: background-color 0.3s ease-in-out;
     background-color rgba(0,0,0,0.4)
     border-radius 6px
     margin-bottom 10px
 
-    .col-lg-12
+    div
         overflow hidden
 
     &.empty
