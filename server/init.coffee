@@ -14,9 +14,8 @@ app.facebookAppId = "306450296159036"
 app.facebookAppSecret = "692be02db483b8c86e93f1825b27cfee"
 app.facebookScope = "email"
 
-app.googleAppId = "607230319725-r4u3omse5t7h8g9n8ijbqu2bvsar4" +
-    "1iv.apps.googleusercontent.com"
-app.googleAppSecret = "Uc7kjZL-NSAYwh5cPzMHea0C"
+app.googleAppId = "607230319725.apps.googleusercontent.com"
+app.googleAppSecret = "-IGErZCmoADZIoynS9e-CUkb"
 app.googleScope = "https://www.googleapis.com/auth/plus.me "+
     "https://www.googleapis.com/auth/userinfo.profile"
 app.googleApiKey = "AIzaSyAa8Ld4iV71-nH_h2OC35LlxNpbEMHxSG0"
