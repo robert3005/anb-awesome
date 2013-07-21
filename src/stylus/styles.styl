@@ -1,3 +1,5 @@
+@import 'nib'
+
 btn-pseudo-states(color, background, border)
     color color
     background-color background
@@ -7,32 +9,19 @@ btn-pseudo-states(color, background, border)
     &:focus
     &:active
     &.active
-        background-color rgba(0,0,0,0.7)
-        border-color rgba(0,0,0,0)
-
-    &.disabled
-    &[disabled]
-    fieldset[disabled] &
-        &
-        &:hover
-        &:focus
-        &:active
-        &.active
-            background-color background
-            border-color border
-
-
-// Transitions
-transition()
-    -webkit-transition arguments
-    transition arguments
+        background-color darken(background, 5%)
+        border-color darken(border, 10%)
 
 body
     background url("../img/16_iii_export.jpg") no-repeat center center fixed
-    -webkit-background-size cover
-    -moz-background-size cover
-    -o-background-size cover
-    background-size cover
+    background-size: cover;
+    transition: all 0.3s ease-in-out;
+
+    &.sound-correct
+        box-shadow: inset 0 0 10em 0 rgba(137,185,8, 0.6);
+
+    &.sound-wrong
+        box-shadow: inset 0 0 10em 0 rgba(195,2,2,0.6);
 
 .container
     text-align center
@@ -52,21 +41,46 @@ h2
     img
         vertical-align top
 
+    canvas
+        margin-top 5px
+
     &.words
         font-size 200px
 
 .btn-transparent
-    btn-pseudo-states(#fff, rgba(0,0,0,0.6), rgba(0,0,0,0))
+    color #fff
+    background-color rgba(0,0,0,0.6)
+    border-color rgba(0,0,0,0)
 
-.row
+    &:hover
+    &:focus
+    &:active
+    &.active
+        background-color rgba(0,0,0,0.7)
+        border-color rgba(0,0,0,0)
+
+.btn-toggle
+    color #fff
+    background-color rgba(24,24,24,0.6)
+    border-color rgba(0,0,0,0)
+
+    &:hover
+    &:focus
+    &:active
+    &.active
+        background-color rgba(24,24,24,0.8)
+        border-color rgba(0,0,0,0)
+
+.row + .row
+.sequence
     margin-top 10px
+
+.sound
+    display none
 
 .reset
     margin-top 0
     margin-bottom 10px
-
-.row:last-child
-    margin-bottom 20px
 
 .instructions
     background-color rgba(0,0,0,0.4)
@@ -74,9 +88,21 @@ h2
     color #fff
     height 100%
     padding 10px
+    font-size 17px
 
     &.lead
         margin-bottom 0
+
+.slider-box
+    background-color rgba(0,0,0,0.4)
+    border-radius 6px
+    color #fff
+    padding-top 10px
+    padding-bottom 10px
+
+    span
+        font-size 16px
+        margin-right 35px
 
 p:last-child
     margin-bottom 0px
@@ -85,9 +111,10 @@ p:last-child
     display none
 
 .sequence
-    transition background-color 0.2s ease
+    transition: background-color 0.3s ease-in-out;
     background-color rgba(0,0,0,0.4)
     border-radius 6px
+    margin-bottom 10px
 
     .col-lg-12
         overflow hidden

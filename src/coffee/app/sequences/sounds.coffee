@@ -4,17 +4,23 @@ define [
 ], ($, _) ->
     class SoundSource
         constructor: ->
-            editors5pictures500px = "https://api.500px.com/v1/photos?" +
-            "feature=editors&consumer_key=7XLtOwVIuezh32SH79YcXxq1eUsq" +
-            "TLNuWjuQjmlt&rpp=5&image_size=4"
+            soundcloud5downloadable = "https://api.soundcloud.com/tracks?" +
+            "client_id=6edbdfe1f57f0bccaa8680b61aea0df2&limit=50" +
+            "&filter=downloadable&duration[from]=0&duration[to]=20000"
 
             result = $.ajax
                 dataType: "json"
-                url: editors5pictures500px
+                url: soundcloud5downloadable
                 async: false
 
-            @content = _(result.responseJSON.photos).pluck("images")
-                .pluck("url")
+            @content = _(result.responseJSON)
+                .filter((elem) ->
+                    elem.original_format is "mp3"
+                ).pluck("download_url")
+                .first(5)
+                .map((elem) ->
+                    elem + "?client_id=6edbdfe1f57f0bccaa8680b61aea0df2"
+                ).value()
 
         toArray: ->
             @content

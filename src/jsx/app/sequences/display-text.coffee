@@ -2,7 +2,7 @@
 define [
     "react"
 ], (React) ->
-    TextDisplay = React.createClass
+    DisplayText = React.createClass
 
         render: ->
             `<span>{this.props.element}</span>`

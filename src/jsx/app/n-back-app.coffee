@@ -1,23 +1,29 @@
 `/** @jsx React.DOM */`
 define [
-    "react",
-    "jquery",
-    "app/sequences/display-sequence",
+    "react"
+    "jquery"
+    "app/sequences/display-sequence"
+    "app/button-toggle"
     "bootstrap-slider"
-], (React, $, DisplaySequence) ->
+], (React, $, DisplaySequence, ButtonToggle) ->
     NBackApp = React.createClass
         getInitialState: ->
-            return started: no
+            started: no
+            sound: no
 
         componentDidMount: ->
             $(this.refs.slider.getDOMNode()).slider
                 min: 1
                 max: 20
+                value: 1
+
+        toggleSound: ->
+            this.setState sound: yes
 
         start: (type) ->
             if not this.state.started
                 nback = $(this.refs.slider.getDOMNode()).data('slider').getValue()
-                this.refs.displaySeq.start type, nback
+                this.refs.displaySeq.start type, this.state.sound, nback
                 this.setState started: yes
             $(this.refs[type].getDOMNode()).blur()
 
@@ -32,15 +38,31 @@ define [
                     <div class="col-lg-4">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="instructions lead">
-                                    <p>Use &larr; or j to indicate a match</p>
-                                    <p>and &rarr; or k for lack of it</p>
+                                <div class="instructions">
+                                    <p>
+                                        Use <span class="label label-success">&larr;</span>
+                                        or <span class="label label-success">j</span>
+                                        to indicate a match and
+                                        <span class="label label-danger">&rarr;</span>
+                                        or <span class="label label-danger">k</span>
+                                        for lack of it
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12" id="slider">
-                                <input type="text" ref="slider"/>
+                                <div class="slider-box">
+                                    <span>N value</span>
+                                    <input type="text" ref="slider"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ButtonToggle toggle={this.toggleSound}>
+                                    Include Sound
+                                </ButtonToggle>
                             </div>
                         </div>
                     </div>
@@ -79,6 +101,18 @@ define [
                                     class="btn btn-transparent btn-large btn-block">
                                         Images
                                 </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <button type="button"
+                                    ref="grids"
+                                    onClick={this.start.bind(this, "grids")}
+                                    class="btn btn-transparent btn-large btn-block">
+                                        Grid
+                                </button>
+                            </div>
+                            <div class="col-lg-6">
                             </div>
                         </div>
                     </div>

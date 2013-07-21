@@ -2,7 +2,7 @@
 define [
     "react"
 ], (React) ->
-    ImageDisplay = React.createClass
+    DisplayImage = React.createClass
 
         render: ->
             `<img height="400" src={this.props.element} />`

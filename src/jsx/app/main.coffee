@@ -16,3 +16,10 @@ define [
         expose: yes
         cookieMonster: yes
         cookiePath: "/"
+
+    adjustSize = ->
+        $("body").css "height", $(window).height()
+
+    $(window).resize adjustSize
+
+    adjustSize()

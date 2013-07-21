@@ -5,8 +5,9 @@ define [
     "app/sequences/words"
     "app/sequences/images"
     "app/sequences/sounds"
+    "app/sequences/grids"
 ], (Sequence, LetterSource, NumberSource, WordsSource,
-        ImageSource, SoundSource) ->
+        ImageSource, SoundSource, GridSource) ->
     class SequenceFactory
         constructor: ->
 
@@ -24,5 +25,8 @@ define [
 
         sounds: ->
             new Sequence(new SoundSource)
+
+        grids: ->
+            new Sequence(new GridSource)
 
     new SequenceFactory()
