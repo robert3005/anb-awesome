@@ -13,6 +13,7 @@ requirejs.config
             deps: ["jquery", "lodash"]
             exports: "Backbone"
         "bootstrap-slider": ["jquery"]
-
+        "jquery.cookie": ["jquery"]
+        "jquery.joyride": ["jquery", "jquery.cookie"]
 
 requirejs ["app/main"]

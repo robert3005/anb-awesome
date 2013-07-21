@@ -5,6 +5,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(href="css/lib/bootstrap.css", rel="stylesheet", media="screen")
     link(href="css/lib/slider.css", rel="stylesheet", media="screen")
+    link(href="css/lib/joyride-2.1.css", rel="stylesheet", media="screen")
     link(href="css/styles.css", rel="stylesheet", media="screen")
     title N-Back Training
   body
@@ -15,3 +16,15 @@ html(lang="en")
         .row
             .col-lg-12
                 #content
+        ol#intro
+            li
+                p.
+                    Welcome to N-Back training game.
+                    The goal of this game is to recall whether element you are currently seeing has occured N steps back.
+            li(data-id="slider")
+                p.
+                    Use this slider to adjust value of N
+            li(data-id="controls")
+                p You have a choise between letters, numbers and words
+            li
+                p If you haven't done that before try with N=1. Good Luck.

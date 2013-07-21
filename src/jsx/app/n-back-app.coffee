@@ -39,12 +39,12 @@ define [
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" id="slider">
                                 <input type="text" ref="slider"/>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" id="controls">
                         <div class="row">
                             <div class="col-lg-6">
                                 <button type="button"
@@ -81,7 +81,7 @@ define [
                     <div class="col-lg-12">
                         <button type="button" onClick={this.reset}
                             class="btn btn-transparent btn-large btn-block">
-                                reset
+                                Reset
                         </button>
                     </div>
                 </div>
