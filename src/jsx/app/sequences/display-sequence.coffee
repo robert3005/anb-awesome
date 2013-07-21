@@ -106,6 +106,18 @@ define [
             if correct then match is yes else match is no
 
         updateStreaks: ->
+            if @state.current?
+                $.post "/record",
+                    user: window.userID
+                    correct: @state.currentCorrect
+                    soundCorrect: @state.soundCorrect
+                    history: @state.factory?.generated
+                    soundHistory: @state.sound?.generated
+                    nback: @state.nback
+                    date: moment().valueOf()
+                , (data) ->
+                    console.log data
+
             currentStreak = @state.currentStreak
             longestStreak = @state.longestStreak
 

@@ -1,34 +1,31 @@
 doctype 5
 html(lang="en")
   head
-    script(type="text/javascript", src="/js/lib/require.js", data-main="/js/app.js")
+    //- script(type="text/javascript", src="/js/lib/require.js", data-main="/js/app.js")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(href="css/lib/bootstrap.css", rel="stylesheet", media="screen")
-    link(href="css/lib/slider.css", rel="stylesheet", media="screen")
-    link(href="css/lib/joyride-2.1.css", rel="stylesheet", media="screen")
     link(href="css/styles.css", rel="stylesheet", media="screen")
     title N-Back Training
   body
-    #root.container
+    .container
         .row
             .col-lg-12
                 h1 N-Back Learning
         .row
-            .col-lg-12
-                #content
-        ol#intro
-            li
-                p.
-                    Welcome to N-Back training game.
-                    The goal of this game is to recall whether element you are currently seeing has occured N steps back.
-            li(data-id="slider")
-                p.
-                    Use this slider to adjust value of N
-            li(data-id="controls")
-                p You have a choice between letters, numbers, words, images and grids
-            li(data-id="sound")
-                p You can also include sounds which makes it Dual N-Back since you have to remember two things now!
-            li
-                p   This game is inspired by 
-                    a(href="http://www.gwern.net/DNB%20FAQ") this article
-                    | . If you haven't done that before try with N=1. Good Luck.
+            .col-lg-8.col-offset-2.login-box
+                .facebookLogin
+                  a(href='auth/facebook')
+                    span Log In with Facebook
+                .googleplusLogin
+                  a(href='auth/google')
+                    span Log in with Google+
+
+
+    script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-42621519-1', 'herokuapp.com');
+        ga('send', 'pageview');

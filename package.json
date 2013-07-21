@@ -1,45 +1,50 @@
 {
-    "name": "anb-awesome",
-    "version": "0.1.0",
-    "description": "n back training game",
-    "main": " ",
-    "dependencies": {
-        "express": "~3.3.4",
-        "react-tools": "~0.4.0",
-        "jade": "~0.33.0",
-        "grunt": "~0.4.1",
-        "coffee-script": "~1.6.3",
-        "everyauth": "~0.4.5",
-        "grunt-bg-shell": "~2.1.0",
-        "grunt-coffeelint": "~0.0.7",
-        "grunt-contrib-coffee": "~0.7.0",
-        "grunt-contrib-stylus": "~0.6.0",
-        "grunt-contrib-watch": "~0.5.0",
-        "grunt-contrib-jade": "~0.7.0",
-        "grunt-cli": "~0.1.9"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "node_modules/.bin/grunt build"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/robert3005/anb-awesome.git"
-    },
-    "engines": {
-        "node": "~0.10.13",
-        "npm": "~1.3.2"
-    },
-    "keywords": [
-        "dnb",
-        "dual",
-        "n-back",
-        "working",
-        "memory"
-    ],
-    "author": "Robert Kruszewski",
-    "license": "BSD",
-    "bugs": {
-        "url": "https://github.com/robert3005/anb-awesome/issues"
-    }
+  "name": "anb-awesome",
+  "version": "0.1.0",
+  "description": "n back training game",
+  "main": " ",
+  "dependencies": {
+    "express": "~3.3.4",
+    "react-tools": "~0.4.0",
+    "jade": "~0.33.0",
+    "grunt": "~0.4.1",
+    "coffee-script": "~1.6.3",
+    "everyauth": "~0.4.5",
+    "grunt-bg-shell": "~2.1.0",
+    "grunt-coffeelint": "~0.0.7",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-stylus": "~0.6.0",
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-contrib-jade": "~0.7.0",
+    "grunt-cli": "~0.1.9",
+    "connect-redis": "~1.4.5",
+    "redis-url": "~0.1.0",
+    "mongoose": "~3.6.15",
+    "promised-io": "~0.3.3",
+    "lodash": "~1.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node_modules/.bin/grunt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/robert3005/anb-awesome.git"
+  },
+  "engines": {
+    "node": "~0.10.13",
+    "npm": "~1.3.2"
+  },
+  "keywords": [
+    "dnb",
+    "dual",
+    "n-back",
+    "working",
+    "memory"
+  ],
+  "author": "Robert Kruszewski",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/robert3005/anb-awesome/issues"
+  }
 }
