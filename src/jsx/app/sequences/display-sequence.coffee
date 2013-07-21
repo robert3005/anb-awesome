@@ -61,11 +61,11 @@ define [
                 $node.off "transitionend"
 
         userClick: (ev) ->
-            if ev.keyCode is 37
+            if ev.keyCode is 37 or ev.keyCode is 74
                 @displayResult(this.state.factory.matchBackN(this.state.nback) is yes)
                 @progress this.state.factory
 
-            else if ev.keyCode is 39
+            else if ev.keyCode is 39 or ev.keyCode is 75
                 @displayResult((not this.state.factory.matchBackN(this.state.nback)) is yes)
                 @progress this.state.factory
 

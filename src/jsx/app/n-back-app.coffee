@@ -33,8 +33,8 @@ define [
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="instructions lead">
-                                    <p>Use &larr; to indicate a match</p>
-                                    <p>and &rarr; for lack of it</p>
+                                    <p>Use &larr; or j to indicate a match</p>
+                                    <p>and &rarr; or k for lack of it</p>
                                 </div>
                             </div>
                         </div>
