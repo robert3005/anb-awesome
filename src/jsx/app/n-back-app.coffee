@@ -42,9 +42,17 @@ define [
                                     <p>
                                         Use <span class="label label-success">&larr;</span>
                                         or <span class="label label-success">j</span>
-                                        to indicate a match and
+                                        to indicate match on main element
                                         <span class="label label-danger">&rarr;</span>
                                         or <span class="label label-danger">k</span>
+                                        for lack of it
+                                    </p>
+                                    <p>
+                                        Use <span class="label label-success">&uarr;</span>
+                                        or <span class="label label-success">a</span>
+                                        to indicate match on heard sound
+                                        <span class="label label-danger">&darr;</span>
+                                        or <span class="label label-danger">s</span>
                                         for lack of it
                                     </p>
                                 </div>
@@ -56,13 +64,6 @@ define [
                                     <span>N value</span>
                                     <input type="text" ref="slider"/>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ButtonToggle toggle={this.toggleSound}>
-                                    Include Sound
-                                </ButtonToggle>
                             </div>
                         </div>
                     </div>
@@ -105,14 +106,17 @@ define [
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
+                                <ButtonToggle toggle={this.toggleSound}>
+                                    Include Sound
+                                </ButtonToggle>
+                            </div>
+                            <div class="col-lg-6">
                                 <button type="button"
                                     ref="grids"
                                     onClick={this.start.bind(this, "grids")}
                                     class="btn btn-transparent btn-large btn-block">
                                         Grid
                                 </button>
-                            </div>
-                            <div class="col-lg-6">
                             </div>
                         </div>
                     </div>

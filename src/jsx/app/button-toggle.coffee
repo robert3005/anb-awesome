@@ -17,6 +17,6 @@ define [
         render: ->
             return `<button type="button"
                 onClick={this.toggle}
-                class="btn btn-toggle btn-large btn-block">
+                class="btn btn-default btn-large btn-block">
                     {this.props.children}
             </button>`
