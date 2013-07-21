@@ -142,10 +142,7 @@ app.use app.router
 app.use express.static(path.join __dirname, "../public")
 
 app.get "/", (req, res) ->
-    if req.loggedIn
-        res.render "index"
-    else
-        res.redirect "/game"
+    res.render "index"
 
 app.get "/game", (req, res) ->
     res.render "game",
