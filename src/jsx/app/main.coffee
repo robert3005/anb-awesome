@@ -11,8 +11,8 @@ define [
     React.renderComponent `<App/>`, content
 
     $("#intro").joyride
-        autoStart: true
-        modal: true
-        expose: true
-        cookieMonster: true
+        autoStart: yes
+        modal: yes
+        expose: yes
+        cookieMonster: yes
         cookiePath: "/"

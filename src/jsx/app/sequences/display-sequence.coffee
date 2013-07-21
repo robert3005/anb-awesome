@@ -57,7 +57,7 @@ define [
             $node = $ this.getDOMNode()
             $node.css "background-color": colour
             $node.on "transitionend", ->
-                $node.css "background-color": "rgba(0,0,0,0.4)"
+                $node.attr "style", ""
                 $node.off "transitionend"
 
         userClick: (ev) ->
@@ -72,6 +72,8 @@ define [
         reset: ->
             this.setState
                 current: null
+                type: null
+                nback: 1
 
         render: ->
             classes = "current-element": yes
@@ -79,7 +81,7 @@ define [
 
             seqClasses =
                 sequence: yes
-                empty: not this.state.current?
+                empty: not (this.state.current?)
 
 
             classFromObj = (obj) ->
