@@ -16,14 +16,15 @@
     "grunt-contrib-copy": "~0.4.1",
     "react-tools": "~0.4.0",
     "everyauth": "~0.4.5",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "grunt-cli": "~0.1.9"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "sudo npm install -g grunt-cli && grunt build"
+    "postinstall": "node_modules/.bin/grunt build"
   },
   "repository": {
     "type": "git",
