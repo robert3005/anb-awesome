@@ -8,32 +8,30 @@ define [
     "app/sequences/display-image"
     "app/sequences/display-sound"
     "app/sequences/display-grid"
+    "app/statistics"
 ], (React, $, _, SequenceFactory, DisplayText, DisplayImage,
-    DisplaySound, DisplayGrid) ->
+    DisplaySound, DisplayGrid, Statistics) ->
     SequenceDisplay = React.createClass
         getInitialState: ->
-            return {
-                current: null
-                soundCurrent: null
-                factory: null
-                sound: null
-                type: null
-                nback: 1
-                currentCorrect: no
-                soundCorrect: no
-            }
+            current: null
+            soundCurrent: null
+            factory: null
+            sound: null
+            type: null
+            nback: 1
+            currentCorrect: no
+            soundCorrect: no
 
         componentDidMount: ->
-            window.addEventListener "keydown", this.userClick
+            window.addEventListener "keydown", @userClick
 
         componentWillUnmount: ->
-            window.removeEventListener "keydown", this.userClick
+            window.removeEventListener "keydown", @userClick
 
         start: (type, sound, nback) ->
             factory = SequenceFactory[type]()
-            if sound
-                soundFactory = SequenceFactory["sounds"]()
-            this.setState
+            soundFactory = SequenceFactory["sounds"]() if sound
+            @setState
                 factory: factory
                 type: type
                 nback: nback
@@ -42,7 +40,7 @@ define [
             @progress factory, soundFactory
 
         progress: (factory, soundFactory) ->
-            $current = $ this.refs.current.getDOMNode()
+            $current = $ @refs.current.getDOMNode()
             $current.animate {
                 marginLeft: -9999
             }, {
@@ -51,7 +49,7 @@ define [
                     $current.css
                         "margin-left": 0
                         "margin-right": -9999
-                    this.setState
+                    @setState
                         currentCorrect: no
                         soundCorrect: no
                         current: factory.next()
@@ -65,7 +63,7 @@ define [
             }
 
         displayMainResult: (correct) ->
-            $node = $ this.getDOMNode()
+            $node = $ @getDOMNode()
             $node.on "transitionend", ->
                 $node.attr "style", ""
                 $node.off "transitionend"
@@ -89,74 +87,75 @@ define [
                 $body.addClass "sound-wrong"
 
         match: (factory, correct) ->
-            match = factory.matchBackN(this.state.nback)
+            match = factory.matchBackN(@state.nback)
             if correct then match is yes else match is no
 
         withSoundValidator: (ev) ->
             if ev.keyCode in [37,38,39,40,65,74,75,83]
                 [factory, match] = switch ev.keyCode
                     # Left arrow
-                    when 37 then [this.state.factory, yes]
+                    when 37 then [@state.factory, yes]
                     # Up arrow
-                    when 38 then [this.state.sound, yes]
+                    when 38 then [@state.sound, yes]
                     # Right arrow
-                    when 39 then [this.state.factory, no]
+                    when 39 then [@state.factory, no]
                     # Bottom arrow
-                    when 40 then [this.state.sound, no]
+                    when 40 then [@state.sound, no]
                     # A
-                    when 65 then [this.state.sound, yes]
+                    when 65 then [@state.sound, yes]
                     # J
-                    when 74 then [this.state.factory, yes]
+                    when 74 then [@state.factory, yes]
                     # K
-                    when 75 then [this.state.factory, no]
+                    when 75 then [@state.factory, no]
                     # S
-                    when 83 then [this.state.sound, no]
+                    when 83 then [@state.sound, no]
 
 
                 correct = @match factory, match
                 if not correct
-                    if factory is this.state.factory
+                    if factory is @state.factory
                         @displayMainResult no
                     else
                         @displaySoundResult no
 
-                    @progress this.state.factory, this.state.sound
+                    @progress @state.factory, @state.sound
                 else
-                    if factory is this.state.factory
-                        this.setState currentCorrect: yes
+                    if factory is @state.factory
+                        @setState currentCorrect: yes
                         @displayMainResult yes
                     else
-                        this.setState soundCorrect: yes
+                        @setState soundCorrect: yes
                         @displaySoundResult yes
 
-                    if this.state.soundCorrect and this.state.currentCorrect
-                        @progress this.state.factory, this.state.sound
+                    if @state.soundCorrect and @state.currentCorrect
+                        @progress @state.factory, @state.sound
 
         withoutSoundValidator: (ev) ->
             if ev.keyCode in [37,39,74,75]
                 [factory, match] = switch ev.keyCode
                     # Left arrow
-                    when 37 then [this.state.factory, yes]
+                    when 37 then [@state.factory, yes]
                     # Right arrow
-                    when 39 then [this.state.factory, no]
+                    when 39 then [@state.factory, no]
                     # J
-                    when 74 then [this.state.factory, yes]
+                    when 74 then [@state.factory, yes]
                     # K
-                    when 75 then [this.state.factory, no]
+                    when 75 then [@state.factory, no]
 
                 correct = @match factory, match
                 @displayMainResult correct
-                @progress this.state.factory, this.state.sound
+                @setState currentCorrect: yes
+                @progress @state.factory, @state.sound
 
         userClick: (ev) ->
-            if this.state.sound?
+            if @state.sound?
                 @withSoundValidator ev
             else
                 @withoutSoundValidator ev
 
 
         reset: ->
-            this.setState
+            @setState
                 current: null
                 soundCurrent: null
                 type: null
@@ -165,17 +164,16 @@ define [
                 soundCorrect: no
 
         shouldComponentUpdate: (nextProps, nextState) ->
-            console.log nextState, this.state
-            this.state.current isnt nextState.current or
-            this.state.soundCurrent isnt nextState.soundCurrent
+            @state.current isnt nextState.current or
+            @state.soundCurrent isnt nextState.soundCurrent
 
         render: ->
             classes = "current-element": yes
-            classes[this.state.type] = yes
+            classes[@state.type] = yes
 
             seqClasses =
                 sequence: yes
-                empty: not (this.state.current?)
+                empty: not (@state.current?)
 
 
             classFromObj = (obj) ->
@@ -183,20 +181,22 @@ define [
                     if isSet then cssClass else null
                 ).filter().value().join " "
 
-            if this.state.type is "images"
+            if @state.type is "images"
                 element = `<DisplayImage element={this.state.current} />`
-            if this.state.type is "grids"
+            if @state.type is "grids"
                 element = `<DisplayGrid element={this.state.current} />`
             else
                 element = `<DisplayText element={this.state.current} />`
 
-            if this.state.soundCurrent?
+            if @state.soundCurrent?
                 soundElem = `<DisplaySound element={this.state.soundCurrent}
                     current={this.state.current} >
                     {this.state.soundCurrent}
                 </DisplaySound>`
 
             return `<div class={classFromObj(seqClasses)}>
+                <Statistics factory={this.state.factory} sound={this.state.sound}
+                     />
                 {soundElem}
                 <div class="row">
                     <div class="col-lg-12">

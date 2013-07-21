@@ -12,25 +12,25 @@ define [
             sound: no
 
         componentDidMount: ->
-            $(this.refs.slider.getDOMNode()).slider
+            $(@refs.slider.getDOMNode()).slider
                 min: 1
                 max: 20
                 value: 1
 
         toggleSound: ->
-            this.setState sound: yes
+            @setState sound: yes
 
         start: (type) ->
-            if not this.state.started
-                nback = $(this.refs.slider.getDOMNode()).data('slider').getValue()
-                this.refs.displaySeq.start type, this.state.sound, nback
-                this.setState started: yes
-            $(this.refs[type].getDOMNode()).blur()
+            if not @state.started
+                nback = $(@refs.slider.getDOMNode()).data('slider').getValue()
+                @refs.displaySeq.start type, @state.sound, nback
+                @setState started: yes
+            $(@refs[type].getDOMNode()).blur()
 
         reset: ->
-            if this.state.started
-                this.refs.displaySeq.reset()
-                this.setState started: no
+            if @state.started
+                @refs.displaySeq.reset()
+                @setState started: no
 
         render: ->
             return `<div class="main">

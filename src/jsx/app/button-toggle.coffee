@@ -6,13 +6,13 @@ define [
 ], (React, $) ->
     ButtonToggle = React.createClass
         componentDidMount: ->
-            $(this.getDOMNode()).button()
+            $(@getDOMNode()).button()
 
         toggle: ->
-            $(this.getDOMNode()).button("toggle")
-            $(this.getDOMNode()).blur()
-            if this.props.toggle?
-                this.props.toggle()
+            $(@getDOMNode()).button("toggle")
+            $(@getDOMNode()).blur()
+            if @props.toggle?
+                @props.toggle()
 
         render: ->
             return `<button type="button"

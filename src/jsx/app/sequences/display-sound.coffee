@@ -8,14 +8,14 @@ define [
             sound: null
 
         componentDidMount: ->
-            this.stream this.props.element
+            @stream @props.element
 
         componentDidUpdate: ->
-            this.stream this.props.element
+            @stream @props.element
 
         stream: (track) ->
-            if this.state.sound?
-                this.state.sound.stop()
+            if @state.sound?
+                @state.sound.stop()
 
             sound = new Howler.Howl
                 urls: [track]
@@ -25,11 +25,11 @@ define [
                     clip: [0, 800]
 
             sound.play "clip"
-            this.setState sound: sound
+            @setState sound: sound
 
         shouldComponentUpdate: (nextProps, nextState) ->
-            nextProps.element isnt this.props.element or
-            nextProps.current isnt this.props.current
+            nextProps.element isnt @props.element or
+            nextProps.current isnt @props.current
 
         render: ->
             `<div class="sound">{this.props.children}</div>`
