@@ -26,6 +26,10 @@
     "type": "git",
     "url": "git://github.com/robert3005/anb-awesome.git"
   },
+  "engines": {
+    "node": "~0.10.13",
+    "npm": "~1.3.2"
+  },
   "keywords": [
     "dnb",
     "dual",
