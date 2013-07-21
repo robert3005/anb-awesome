@@ -17,9 +17,9 @@ define [
         cookieMonster: yes
         cookiePath: "/"
 
-    adjustSize = ->
-        $("body").css "height", $(window).height()
+    # adjustSize = ->
+    #     $("body").css "height", $(window).height()
 
-    $(window).resize adjustSize
+    # $(window).resize adjustSize
 
-    adjustSize()
+    # adjustSize()
